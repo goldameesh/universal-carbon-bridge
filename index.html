@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Carbon Bridge Explorer - Interactive Net-Zero Intelligence Hub</title>
+  <meta name="description" content="An interactive, immersive guide explaining the Carbon Bridge mechanism globally and regionally, with rules, laws, SOPs, and citation-backed smart query console.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Floating Header -->
+    <header class="glass-card">
+      <div class="logo-section">
+        <img src="bas-logo.png" alt="Brahmastra Advisory Services Logo" class="brand-logo-img">
+        <span class="logo-text">CARBON BRIDGE</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#active-bridge" class="active">The Bridge</a></li>
+          <li><a href="#region-explorer">Regional Laws</a></li>
+          <li><a href="#intelligence-hub">Intelligence Hub</a></li>
+          <li><a href="#calculators">Calculators</a></li>
+        </ul>
+      </nav>
+      <div>
+        <a href="#intelligence-hub" class="glow-btn">
+          <span>Query Hub</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m21 21-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main>
+
+      <!-- SECTION 1: Active Carbon Bridge Visualizer -->
+      <section id="active-bridge" class="hero-section">
+        <div class="visualizer-card glass-card">
+          
+          <div class="visualizer-overlay-top">
+            <div class="visualizer-header">
+              <span class="badge glow-text">Core Concept Explainer</span>
+              <h2>Visualising the Universal Carbon Bridge</h2>
+              <p>Carbon bridging connects fragmented carbon structures globally, enabling smooth emissions abatement transitions. Hover over the pillars to inspect the core operational mechanisms.</p>
+            </div>
+            <div style="text-align: right; pointer-events: none;">
+              <span class="badge" style="background: rgba(239, 68, 68, 0.1); color: var(--accent-danger); border-color: rgba(239, 68, 68, 0.2)">Fossil Bank</span>
+              <span style="color: var(--text-muted); margin: 0 8px;">➞</span>
+              <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-green); border-color: rgba(16, 185, 129, 0.2)">Net-Zero Future</span>
+            </div>
+          </div>
+
+          <!-- The Particle Canvas Animation -->
+          <div class="canvas-wrapper">
+            <canvas id="bridgeCanvas"></canvas>
+          </div>
+
+          <!-- Clickable/Hoverable Pillar controls -->
+          <div class="pillars-overlay">
+            
+            <button class="pillar-trigger active" id="pillar-markets" style="--pillar-color: var(--accent-cyan)">
+              <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="M12 8v8M9 12h6" stroke-width="1.5"/></svg>
+              <h4>Market Registry Link</h4>
+              <p>Digitizes and links voluntary credit markets with blockchains.</p>
+            </button>
+            
+            <button class="pillar-trigger" id="pillar-border" style="--pillar-color: var(--accent-gold)">
+              <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke-width="1.5"/></svg>
+              <h4>Border Protection (CBAM)</h4>
+              <p>Imposes equivalent carbon cost on imported industrial goods.</p>
+            </button>
+            
+            <button class="pillar-trigger" id="pillar-sovereign" style="--pillar-color: var(--accent-blue)">
+              <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10ZM2 12h20" stroke-width="1.5"/></svg>
+              <h4>Article 6 Sovereign Link</h4>
+              <p>Bilateral trading between sovereign national emission ledgers.</p>
+            </button>
+            
+            <button class="pillar-trigger" id="pillar-transition" style="--pillar-color: var(--accent-purple)">
+              <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z" stroke-width="1.5"/></svg>
+              <h4>Transition Technology</h4>
+              <p>Physical carbon capture, storage, and replacement infrastructure.</p>
+            </button>
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- Expandable Pillar Details Modal / Panel -->
+      <section id="pillar-details" class="pillar-details-panel">
+        <div class="glass-card detail-card" id="detail-card-panel">
+          <div class="detail-header">
+            <div class="detail-header-text">
+              <span class="badge glow-text" id="detail-subtitle">The Liquidity Bridge</span>
+              <h3 id="detail-title">Market Linkage & Digitization</h3>
+            </div>
+            <button class="sec-btn" onclick="document.getElementById('pillar-details').style.display='none'" style="padding: 6px 12px; font-size: 0.8rem;">Dismiss Details</button>
+          </div>
+          <div class="detail-body">
+            <div class="detail-desc">
+              <p id="detail-desc-text">This carbon bridge connects fragmented voluntary carbon registries with high-efficiency blockchain networks, enabling 24/7 liquidity and public auditing.</p>
+              <a href="#intelligence-hub" class="glow-btn" style="padding: 8px 18px; font-size: 0.85rem;">
+                <span>Search Laws In Depth</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m21 21-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
+              </a>
+            </div>
+            <div class="detail-specs">
+              <div class="spec-item">
+                <h5>Operational Mechanism</h5>
+                <p id="spec-mechanism">Tokenization Protocols (ERC-20 twin minting)</p>
+              </div>
+              <div class="spec-item">
+                <h5>Governing Standards</h5>
+                <p id="spec-global-law">VCMI Integrity Guidelines, IETA Guidelines</p>
+              </div>
+              <div class="spec-item">
+                <h5>Simplified SOP</h5>
+                <p id="spec-sop">Lock credit -> Mint digital token -> Verify on blockchain ledger</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- SECTION 2: Interactive Region & Policy Explorer -->
+      <section id="region-explorer" class="explorer-section">
+        <div class="section-title-area">
+          <span class="badge glow-text">Regional Adaptability Framework</span>
+          <h2>Regional Carbon Bridges & SOPs</h2>
+          <p>Click a region below to inspect their active legislations, structural clauses, and compliant standard operating procedures.</p>
+        </div>
+
+        <div class="region-layout">
+          <!-- Sidebar: List of Regions -->
+          <div class="region-sidebar">
+            
+            <button class="region-btn active" id="region-btn-global" style="--region-color: var(--accent-blue); --region-color-rgb: 59, 130, 246">
+              <div class="region-btn-info">
+                <span class="region-flag">🌍</span>
+                <div class="region-name-wrap">
+                  <h4>Global Framework</h4>
+                  <p>UNFCCC Articles & Treaties</p>
+                </div>
+              </div>
+              <svg class="region-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            
+            <button class="region-btn" id="region-btn-eu" style="--region-color: var(--accent-cyan); --region-color-rgb: 6, 182, 212">
+              <div class="region-btn-info">
+                <span class="region-flag">🇪🇺</span>
+                <div class="region-name-wrap">
+                  <h4>European Union</h4>
+                  <p>CBAM Carbon Borders</p>
+                </div>
+              </div>
+              <svg class="region-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            
+            <button class="region-btn" id="region-btn-us" style="--region-color: var(--accent-blue); --region-color-rgb: 59, 130, 246">
+              <div class="region-btn-info">
+                <span class="region-flag">🇺🇸</span>
+                <div class="region-name-wrap">
+                  <h4>United States</h4>
+                  <p>IRA Subsidies & Cap-and-Trade</p>
+                </div>
+              </div>
+              <svg class="region-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            
+            <button class="region-btn" id="region-btn-china" style="--region-color: var(--accent-gold); --region-color-rgb: 245, 158, 11">
+              <div class="region-btn-info">
+                <span class="region-flag">🇨🇳</span>
+                <div class="region-name-wrap">
+                  <h4>China</h4>
+                  <p>National Compliance & CCER</p>
+                </div>
+              </div>
+              <svg class="region-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+
+            <button class="region-btn" id="region-btn-india" style="--region-color: var(--accent-purple); --region-color-rgb: 139, 92, 246">
+              <div class="region-btn-info">
+                <span class="region-flag">🇮🇳</span>
+                <div class="region-name-wrap">
+                  <h4>India</h4>
+                  <p>CCC Targets & Energy Act</p>
+                </div>
+              </div>
+              <svg class="region-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+
+            <button class="region-btn" id="region-btn-brazil" style="--region-color: var(--accent-green); --region-color-rgb: 16, 185, 129">
+              <div class="region-btn-info">
+                <span class="region-flag">🇧🇷</span>
+                <div class="region-name-wrap">
+                  <h4>Brazil</h4>
+                  <p>Amazon Forestry & REDD+</p>
+                </div>
+              </div>
+              <svg class="region-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+
+            <button class="region-btn" id="region-btn-gcc" style="--region-color: #d4af37; --region-color-rgb: 212, 175, 55">
+              <div class="region-btn-info">
+                <span class="region-flag">🇸🇦</span>
+                <div class="region-name-wrap">
+                  <h4>Middle East (GCC)</h4>
+                  <p>Saudi GCRM & UAE Registries</p>
+                </div>
+              </div>
+              <svg class="region-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            
+          </div>
+
+          <!-- Viewport: Active region dashboard -->
+          <div class="region-dashboard glass-card" id="region-dashboard-panel" style="--region-color: var(--accent-blue)">
+            <div class="region-header">
+              <div class="region-header-title">
+                <span class="badge glow-text" id="region-active-flag">🌍</span>
+                <h3 id="region-active-name">Global Framework</h3>
+              </div>
+              <a href="#calculators" class="sec-btn" style="padding: 6px 14px; font-size: 0.8rem;">Run Calculations</a>
+            </div>
+
+            <div class="region-grid">
+              
+              <div class="grid-card">
+                <h4>
+                  <svg class="grid-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+                  <span>Regional Carbon Element</span>
+                </h4>
+                <p id="region-element">Sovereign carbon linking under the Paris Agreement Article 6 treaty system.</p>
+              </div>
+              
+              <div class="grid-card">
+                <h4>
+                  <svg class="grid-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/></svg>
+                  <span>Governing Laws</span>
+                </h4>
+                <p id="region-laws">Paris Agreement, Article 6, Clauses 6.2 and 6.4 [3].</p>
+              </div>
+
+            </div>
+
+            <!-- Specific Legal Clauses -->
+            <div class="grid-card" style="margin-bottom: 24px;">
+              <h4>
+                <svg class="grid-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 11h9M12 5h9M12 17h9M3 5.5l2 2 4-4M3 11.5l2 2 4-4M3 17.5l2 2 4-4"/></svg>
+                <span>Key Policies & Legal Clauses</span>
+              </h4>
+              <p id="region-clauses">
+                <strong>ITMOs (Internationally Transferred Mitigation Outcomes):</strong> Bilateral trading mechanism that allows countries to sell excess emission reductions.<br><br>
+                <strong>Corresponding Adjustment:</strong> A mandatory ledger balancing rule that prevents double-counting by subtracting emissions from the buyer's tally and adding them back to the seller's.
+              </p>
+            </div>
+
+            <!-- Compliant SOP Step Flow -->
+            <div class="sop-box">
+              <h4>
+                <svg class="grid-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>
+                <span>Standard Operating Procedure (SOP) Timeline</span>
+              </h4>
+              <div class="timeline" id="sop-timeline">
+                
+                <div class="timeline-step">
+                  <div class="step-num">1</div>
+                  <h5>Bilateral Treaty</h5>
+                  <p>Two sovereign nations sign an Article 6.2 agreement establishing trade protocols.</p>
+                </div>
+                
+                <div class="timeline-step">
+                  <div class="step-num">2</div>
+                  <h5>Project Validation</h5>
+                  <p>A decarbonization project in the host country is registered and verified under strict sovereign MRV.</p>
+                </div>
+                
+                <div class="timeline-step">
+                  <div class="step-num">3</div>
+                  <h5>ITMO Authorization</h5>
+                  <p>The host country authorizes the emission reductions as ITMOs and applies a Corresponding Adjustment.</p>
+                </div>
+                
+                <div class="timeline-step">
+                  <div class="step-num">4</div>
+                  <h5>Transfer & Credit</h5>
+                  <p>Credits are digitally transferred to the buyer country's registry to meet its official climate targets (NDCs).</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+      <!-- SECTION 3: Smart Citation Query Engine -->
+      <section id="intelligence-hub" class="search-section">
+        <div class="search-card glass-card">
+          <div class="section-title-area" style="text-align: center; max-width: 700px; margin: 0 auto 28px;">
+            <span class="badge glow-text">Verifiable Semantic Intelligence</span>
+            <h2>Cognitive Query Engine</h2>
+            <p>Search legal acts, regulations, registries, and step-by-step procedures. Our engine compiles precise information citing official verified resources.</p>
+          </div>
+
+          <!-- Search Console Bar -->
+          <div class="search-box-wrapper">
+            <svg class="search-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" class="search-input" id="smart-search-bar" placeholder="Ask anything: e.g. What is CBAM and how does it prevent leakage?">
+            <button class="glow-btn search-btn-inside" id="smart-search-btn">
+              <span>Search Registry</span>
+            </button>
+          </div>
+
+          <!-- Suggested Prompt tags -->
+          <div class="suggestions-grid">
+            <button class="tag-btn" data-query="What exactly is a Carbon Bridge?">What is a Carbon Bridge?</button>
+            <button class="tag-btn" data-query="What are the rules and objectives of the EU Carbon Border Adjustment Mechanism (CBAM)?">What is EU CBAM?</button>
+            <button class="tag-btn" data-query="What is the step-by-step SOP for an importer to comply with EU CBAM?">CBAM SOP steps</button>
+            <button class="tag-btn" data-query="How do sovereign countries bridge emissions using Article 6 of the Paris Agreement?">Article 6 Rules</button>
+            <button class="tag-btn" data-query="What rules govern the Carbon Bridge in the United States?">US IRA & 45Q Credits</button>
+            <button class="tag-btn" data-query="How does digital token carbon bridging work?">Web3 Blockchain Bridging</button>
+          </div>
+
+          <!-- Outputs Panel (dynamically populated) -->
+          <div class="results-wrapper" id="search-results-area">
+            <!-- Populated via search-engine.js -->
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- SECTION 4: Interactive Financial Calculators -->
+      <section id="calculators" class="calculator-section">
+        
+        <!-- Calculator 1: EU CBAM Import Tariff -->
+        <div class="calc-card glass-card" style="--accent-active: var(--accent-gold); --accent-active-rgb: 245, 158, 11;">
+          <div class="calc-title">
+            <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); border-color: rgba(245, 158, 11, 0.3)">Tariff Regulator</span>
+            <h3>EU CBAM border Tariff Calculator</h3>
+            <p>Calculate the estimated border tax on carbon-heavy imports into the EU based on sector emissions intensity benchmarks [1].</p>
+          </div>
+
+          <div class="calc-form">
+            <div class="form-group">
+              <label for="cbam-sector">Industrial Cargo Sector</label>
+              <select class="calc-select" id="cbam-sector">
+                <option value="steel">Steel (1.8t CO₂ / ton cargo)</option>
+                <option value="cement">Cement (0.9t CO₂ / ton cargo)</option>
+                <option value="aluminum">Aluminum (4.5t CO₂ / ton cargo)</option>
+                <option value="fertilizer">Fertilizer (2.1t CO₂ / ton cargo)</option>
+                <option value="hydrogen">Hydrogen (9.0t CO₂ / ton cargo)</option>
+                <option value="electricity">Electricity (0.4t CO₂ / MWh)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="cbam-quantity">Import Quantity (Metric Tons)</label>
+              <div class="form-input-row">
+                <input type="range" class="calc-range" id="cbam-quantity-range" min="1" max="100000" step="50" value="5000">
+                <input type="number" class="calc-num" id="cbam-quantity" min="1" value="5000">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cbam-ets">Current EU ETS Allowance Price ($/tonne)</label>
+              <div class="form-input-row">
+                <input type="range" class="calc-range" id="cbam-ets-range" min="10" max="200" step="1" value="85">
+                <input type="number" class="calc-num" id="cbam-ets" min="10" value="85">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cbam-local">Exporter Local Carbon Price Paid Abroad ($/tonne)</label>
+              <div class="form-input-row">
+                <input type="range" class="calc-range" id="cbam-local-range" min="0" max="120" step="1" value="12">
+                <input type="number" class="calc-num" id="cbam-local" min="0" value="12">
+              </div>
+            </div>
+
+            <div class="calc-output">
+              <div class="calc-output-labels">
+                <h5>Total Embedded Emissions</h5>
+                <p id="cbam-calc-emissions">9,000 t CO₂e</p>
+              </div>
+              <div>
+                <h5>Est. Net CBAM Certificate Cost</h5>
+                <div class="calc-value" id="cbam-calc-tariff">$657,000</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Calculator 2: Nature Offset Credit Yields -->
+        <div class="calc-card glass-card" style="--accent-active: var(--accent-green); --accent-active-rgb: 16, 185, 129;">
+          <div class="calc-title">
+            <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border-color: rgba(16, 185, 129, 0.3)">Financing Yields</span>
+            <h3>Forestry Offset yield Calculator</h3>
+            <p>Model the output and estimated revenue streams of a forestry restoration project generating certified voluntary credits [2][7].</p>
+          </div>
+
+          <div class="calc-form">
+            <div class="form-group">
+              <label for="offset-rate">Forest Carbon Sequestration Rate</label>
+              <select class="calc-select" id="offset-rate">
+                <option value="8">Tropical Rainforest (8 t CO₂ / Hectare / Year)</option>
+                <option value="5">Temperate Woodlands (5 t CO₂ / Hectare / Year)</option>
+                <option value="3.5">Boreal Pines (3.5 t CO₂ / Hectare / Year)</option>
+                <option value="12">Afforestation & Bamboo (12 t CO₂ / Hectare / Year)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="offset-area">Conservation Area (Hectares)</label>
+              <div class="form-input-row">
+                <input type="range" class="calc-range" id="offset-area-range" min="10" max="10000" step="10" value="1000">
+                <input type="number" class="calc-num" id="offset-area" min="10" value="1000">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="offset-price">Market Value Per Carbon Credit ($)</label>
+              <div class="form-input-row">
+                <input type="range" class="calc-range" id="offset-price-range" min="3" max="80" step="0.5" value="15">
+                <input type="number" class="calc-num" id="offset-price" min="3" value="15">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="offset-audit">First-Year Registry Verification & Audit Costs ($)</label>
+              <div class="form-input-row">
+                <input type="range" class="calc-range" id="offset-audit-range" min="5000" max="75000" step="1000" value="25000">
+                <input type="number" class="calc-num" id="offset-audit" min="5000" value="25000">
+              </div>
+            </div>
+
+            <div class="calc-output">
+              <div class="calc-output-labels">
+                <h5>Annual Offsets Produced</h5>
+                <p id="offset-calc-credits">8,000 Credits/yr</p>
+              </div>
+              <div>
+                <h5>Est. Net Profit (First Year)</h5>
+                <div class="calc-value" id="offset-calc-revenue" style="color: var(--accent-green)">$95,000</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2026 Universal Carbon Bridge Explorer. Backed by verified legal citations and international registries.</p>
+      <p style="font-size: 0.72rem; margin-top: 8px; color: var(--text-muted)">Verified Sources: Regulation (EU) 2023/956, UNFCCC Art 6, US IRA 45Q, BEE CCTS India, MEE ETS China, Brazil Forest Code.</p>
+    </footer>
+
+  </div>
+
+  <!-- SCRIPT LOADING -->
+  <script src="search-engine.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOP & PRD: Universal Carbon Bridge Portal - Brahmastra Advisory Services</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap">
+  <style>
+    :root {
+      --primary-color: #0b1e36; /* Brahmastra Corporate Deep Navy */
+      --secondary-color: #d4af37; /* Enterprise Elegant Gold */
+      --text-dark: #1e293b;
+      --text-light: #64748b;
+      --bg-light: #f8fafc;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+
+    /* Fixed Branded Top Bar */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: white;
+      border-bottom: 3px solid var(--secondary-color);
+      box-shadow: var(--shadow-md);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    .brand-logo-container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+
+    .brand-subtitle {
+      font-size: 0.7rem;
+      color: var(--secondary-color);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .doc-identifier {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: rgba(11, 30, 54, 0.05);
+      color: var(--primary-color);
+      padding: 6px 14px;
+      border-radius: 4px;
+      border: 1px dashed rgba(11, 30, 54, 0.2);
+    }
+
+    /* Layout structure */
+    .doc-layout {
+      max-width: 1200px;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    @media (max-width: 992px) {
+      .doc-layout {
+        grid-template-columns: 1fr;
+      }
+      .toc-sidebar {
+        display: none;
+      }
+    }
+
+    /* Sticky Sidebar Navigation */
+    .toc-sidebar {
+      position: sticky;
+      top: 120px;
+      height: fit-content;
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .toc-sidebar h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--primary-color);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border-color);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .toc-list a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .toc-list a:hover {
+      color: var(--primary-color);
+    }
+
+    /* Content Area */
+    .content-area {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 60px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Cover Page Elements */
+    .cover-header {
+      border-bottom: 4px double var(--secondary-color);
+      padding-bottom: 40px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .cover-meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      background: var(--bg-light);
+      padding: 24px;
+      border-radius: 8px;
+      border-left: 5px solid var(--primary-color);
+      margin-bottom: 48px;
+    }
+
+    .meta-item h5 {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .meta-item p {
+      font-weight: 600;
+      color: var(--primary-color);
+      font-size: 0.9rem;
+    }
+
+    /* Headings styling */
+    h1, h2, h3, h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 24px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: var(--text-dark);
+      text-align: justify;
+    }
+
+    /* Table styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 32px 0;
+      font-size: 0.88rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 12px 16px;
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--primary-color);
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--bg-light);
+    }
+
+    /* Callout styling */
+    .callout {
+      background-color: rgba(212, 175, 55, 0.06);
+      border-left: 5px solid var(--secondary-color);
+      padding: 24px;
+      border-radius: 4px;
+      margin: 24px 0;
+    }
+
+    .callout h5 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--primary-color);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+    }
+
+    /* SOP Steps flow layout */
+    .sop-steps-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 32px 0;
+    }
+
+    .sop-step-item {
+      background: var(--bg-light);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px 24px;
+      position: relative;
+      padding-left: 70px;
+    }
+
+    .sop-step-number {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .sop-step-item h5 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 6px;
+    }
+
+    .sop-step-item p {
+      margin-bottom: 0;
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+
+    /* Print utility button */
+    .print-button-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 24px;
+    }
+
+    .print-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.2s ease;
+    }
+
+    .print-btn:hover {
+      background-color: #123054;
+    }
+
+    /* Footers */
+    footer {
+      border-top: 1px solid var(--border-color);
+      margin-top: 60px;
+      padding-top: 20px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    /* PRINT STYLES FOR ENTERPRISE HANDOUT */
+    @media print {
+      body {
+        padding-top: 0;
+        background: white;
+        color: black;
+      }
+      .top-bar, .toc-sidebar, .print-button-container {
+        display: none !important;
+      }
+      .doc-layout {
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      .content-area {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="brand-logo-container">
+      <img src="bas-logo.png" alt="BAS Logo" class="brand-logo-img">
+      <div>
+        <div class="brand-title">BRAHMASTRA</div>
+        <div class="brand-subtitle">ADVISORY SERVICES</div>
+      </div>
+    </div>
+    <div class="doc-identifier">DOC-ID: BAS-SOP-PRD-226-004</div>
+  </div>
+
+  <!-- Layout Container -->
+  <div class="doc-layout">
+    
+    <!-- Sidebar -->
+    <aside class="toc-sidebar">
+      <h4>Table of Contents</h4>
+      <ul class="toc-list">
+        <li><a href="#executive-summary">1. Executive Summary</a></li>
+        <li><a href="#carbon-bridge-concept">2. Core Concept</a></li>
+        <li><a href="#prd-specifications">3. Tech Specs (PRD)</a></li>
+        <li><a href="#sop-manual">4. SOP User Manual</a></li>
+        <li><a href="#references">5. Verified References</a></li>
+        <li><a href="#copyright">6. Copyright & Legal</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <article class="content-area">
+      
+      <!-- Cover Page Header -->
+      <div class="cover-header">
+        <h1 style="color: var(--primary-color); margin-top: 0;">Universal Carbon Bridge Portal</h1>
+        <p style="text-align: center; font-size: 1.1rem; color: var(--secondary-color); font-weight: 600; margin-top: 8px;">Standard Operating Procedure (SOP) & Product Requirements (PRD)</p>
+      </div>
+
+      <!-- Metadata Box -->
+      <div class="cover-meta">
+        <div class="meta-item">
+          <h5>Prepared For</h5>
+          <p>Brahmastra Enterprise Sustainability Clients</p>
+        </div>
+        <div class="meta-item">
+          <h5>Prepared By</h5>
+          <p>Sustainability Systems Division, BAS</p>
+        </div>
+        <div class="meta-item">
+          <h5>Date & Version</h5>
+          <p>May 21, 2026 | Version 1.0.0</p>
+        </div>
+        <div class="meta-item">
+          <h5>Security Classification</h5>
+          <p>STRICTLY CONFIDENTIAL / PROPRIETARY</p>
+        </div>
+      </div>
+
+      <div class="print-button-container">
+        <button class="print-btn" onclick="window.print()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          <span>Print SOP / Save PDF</span>
+        </button>
+      </div>
+
+      <!-- SECTION 1 -->
+      <section id="executive-summary">
+        <h2>1. Executive Summary & Core Mandate</h2>
+        <p>The global energy and trade landscape is transitioning into a carbon-constrained era. For multinational corporations and commodity trading entities, navigating independent regional emissions allowances (like the EU ETS or China ETS), carbon tariffs (like the EU Carbon Border Adjustment Mechanism), and voluntary registry channels generates high operational friction. The <strong>Universal Carbon Bridge Portal</strong> represents a premium, immersive digital solution designed by <strong>Brahmastra Advisory Services (BAS)</strong> to translate complex carbon regulations into practical business operational strategies.</p>
+        
+        <p>This portal acts as an active carbon educational model and visual forecasting interface. Through animated simulations, granular policy breakdowns, verified registry citation indexing, and real-time calculators, the platform gives environmental compliance officers and portfolio managers the tools to map their supply chain exposure and offsets operations accurately.</p>
+      </section>
+
+      <!-- SECTION 2 -->
+      <section id="carbon-bridge-concept" class="page-break">
+        <h2>2. Decoding the Carbon Bridge Concept</h2>
+        <p>To standard commercial entities and stakeholders, a <strong>"Carbon Bridge"</strong> represents <em>a regulatory, financial, and physical connector designed to manage cross-border emissions differentials and carbon credit validation pathways</em>.</p>
+        
+        <p>The Brahmastra Carbon Bridge model structures this bridge around four core support pillars:</p>
+        
+        <div class="callout">
+          <h5>Pillar 1: Market Registry Linkage & Digitization</h5>
+          <p>Bridges the voluntary offsets registries (e.g. Verra, Gold Standard) with digital asset systems. Traditional credits are locked or retired in traditional registries, and matching "digital twins" (tokens) are minted on-chain. This provides immediate global liquidity and eliminates transaction clearing bottlenecks.</p>
+        </div>
+
+        <div class="callout">
+          <h5>Pillar 2: Border Safeguards & Carbon Border Adjustments (CBAM)</h5>
+          <p>Acts as an imports tariff equalizer to stop "carbon leakage" (manufacturing moving to lax jurisdictions). It levies an equivalent carbon price on heavy imports (cement, steel, aluminum, fertilizers, hydrogen, electricity) entering strict jurisdictions, matching the carbon penalty of domestic products.</p>
+        </div>
+
+        <div class="callout">
+          <h5>Pillar 3: Article 6 Sovereign Linkages</h5>
+          <p>Establishes bilateral trading of Internationally Transferred Mitigation Outcomes (ITMOs) between sovereign countries under Article 6 of the Paris Agreement. Utilizes mandatory "Corresponding Adjustment" rules to prevent double-claiming.</p>
+        </div>
+
+        <div class="callout">
+          <h5>Pillar 4: Transition Technologies</h5>
+          <p>Represents physical and asset transition, funding carbon capture, geological sequestration (CCS), waste methane reduction, and alternative clean fuels (such as green hydrogen) to reduce industrial emissions footprint.</p>
+        </div>
+      </section>
+
+      <!-- SECTION 3 -->
+      <section id="prd-specifications" class="page-break">
+        <h2>3. Product Requirements Document (PRD) Specifications</h2>
+        <p>To guarantee complete portability and a seamless, high-performance user experience, the codebase follows strict enterprise web standards:</p>
+        
+        <h3>3.1 Technology Stack</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Layer</th>
+              <th>Technology</th>
+              <th>Functional Mandate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Structure</strong></td>
+              <td>HTML5 Semantic DOM</td>
+              <td>Delivers search-optimized layouts, structured tab nodes, and calculator containers with unique diagnostic test IDs.</td>
+            </tr>
+            <tr>
+              <td><strong>Styling</strong></td>
+              <td>Vanilla CSS3 System</td>
+              <td>Controls the dark-mode aesthetic, glowing gradients, backdrop-filters, custom scrollbars, and fully responsive layouts.</td>
+            </tr>
+            <tr>
+              <td><strong>Logic</strong></td>
+              <td>Vanilla ECMAScript 6</td>
+              <td>Renders the canvas animations, tracks tab selections, runs the math equations, and parses database query relevance.</td>
+            </tr>
+            <tr>
+              <td><strong>Analytics</strong></td>
+              <td>Pure Math Vectors</td>
+              <td>Computes custom CBAM emissions intensity margins and nature-based offsets return curves in real-time.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>3.2 Canvas Animation Details</h3>
+        <p>The canvas particle engine uses a coordinate vector loop to simulate combustion transformation. Gray carbon particles are generated continuously in a "Fossil Bank" area. As they travel through a central glowing vertical threshold (representing the bridge's carbon scrubber/validation gate), the system recalculates their color, size, and vector speeds, transforming them into glowing green and cyan rings that float upwards on the clean bank.</p>
+      </section>
+
+      <!-- SECTION 4 -->
+      <section id="sop-manual" class="page-break">
+        <h2>4. Standard Operating Procedures (SOP) - Portal User Manual</h2>
+        <p>Multinational compliance officers, import analysts, and carbon finance directors must utilize the portal in accordance with the following official operating procedure (BAS-SOP-001):</p>
+
+        <div class="sop-steps-timeline">
+          
+          <div class="sop-step-item">
+            <div class="sop-step-number">1</div>
+            <h5>Conceptual Calibration</h5>
+            <p>Review the primary active canvas visualizer. Click on the different bridge support pillars. Examine the technical metrics (such as governing agencies and mechanisms) detailed in the expandable overlay card to establish a baseline vocabulary for staff briefings.</p>
+          </div>
+
+          <div class="sop-step-item">
+            <div class="sop-step-number">2</div>
+            <h5>Regional Policy Sourcing</h5>
+            <p>Scroll to the <em>Regional Carbon Bridges & SOPs</em> dashboard. Select your target operations country (e.g. 🇪🇺 European Union or 🇨🇳 China). Review the specific legal acts and structural operational clauses. Map your corporate workflow to match the active step-by-step compliance timeline.</p>
+          </div>
+
+          <div class="sop-step-item">
+            <div class="sop-step-number">3</div>
+            <h5>Verifiable Regulatory Queries</h5>
+            <p>Access the <em>Cognitive Query Engine</em>. Search for specific regulations (e.g., "What are the rules for EU CBAM?"). Verify the highlighted response text and look up the official numbered citation footer links (e.g., World Bank, EUR-Lex) to compile verified audit reports.</p>
+          </div>
+
+          <div class="sop-step-item">
+            <div class="sop-step-number">4</div>
+            <h5>Financial Tariff & Yield Modeling</h5>
+            <p>Utilize the interactive calculators. Use the CBAM Tariff Calculator to input imported steel/cement quantities and extract projected tariff expenditures after local carbon cost deductions. Use the Forestry Offset Calculator to estimate net yields and offset profits based on plantation acreage.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 5 -->
+      <section id="references" class="page-break">
+        <h2>5. Global Verification Registry & Official References</h2>
+        <p>The portal's search indexes and dashboards are backed by the following official documents and databases verified by BAS:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Ref ID</th>
+              <th>Document / Standard</th>
+              <th>Authoritative Publisher</th>
+              <th>Verification URL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>[1]</td>
+              <td>Regulation (EU) 2023/956 on Carbon Border Adjustments</td>
+              <td>European Parliament & Council</td>
+              <td><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32023R0956" target="_blank">EUR-Lex Hub</a></td>
+            </tr>
+            <tr>
+              <td>[2]</td>
+              <td>State and Trends of Carbon Pricing 2025</td>
+              <td>World Bank Group</td>
+              <td><a href="https://openknowledge.worldbank.org/handle/10986/41595" target="_blank">World Bank Repository</a></td>
+            </tr>
+            <tr>
+              <td>[3]</td>
+              <td>Paris Agreement Article 6 Guidance</td>
+              <td>UNFCCC Secretariat</td>
+              <td><a href="https://unfccc.int/process/the-paris-agreement/cooperative-implementation" target="_blank">UNFCCC Article 6</a></td>
+            </tr>
+            <tr>
+              <td>[4]</td>
+              <td>US Inflation Reduction Act Section 45Q</td>
+              <td>US EPA / Internal Revenue Service</td>
+              <td><a href="https://www.epa.gov/greenhouse-gas-reduction-fund" target="_blank">US EPA Greenhouse Fund</a></td>
+            </tr>
+            <tr>
+              <td>[5]</td>
+              <td>China National Carbon ETS Regulations</td>
+              <td>Ministry of Ecology & Environment</td>
+              <td><a href="http://english.mee.gov.cn/" target="_blank">MEE PRC Registry</a></td>
+            </tr>
+            <tr>
+              <td>[6]</td>
+              <td>India Carbon Trading Scheme (CCTS) Act</td>
+              <td>Bureau of Energy Efficiency, India</td>
+              <td><a href="https://beeindia.gov.in/" target="_blank">BEE India Hub</a></td>
+            </tr>
+            <tr>
+              <td>[7]</td>
+              <td>REDD+ Brazil Forest Code Safeguards</td>
+              <td>CONREDD+ Brazil</td>
+              <td><a href="https://www.gov.br/mma/pt-br" target="_blank">MMA Gov Brazil</a></td>
+            </tr>
+            <tr>
+              <td>[10]</td>
+              <td>Saudi Greenhouse Gas Crediting & Offsetting Mechanism (GCRM) Guidelines</td>
+              <td>Ministry of Energy, Kingdom of Saudi Arabia</td>
+              <td><a href="https://www.moenergy.gov.sa/" target="_blank">Ministry of Energy KSA</a></td>
+            </tr>
+            <tr>
+              <td>[11]</td>
+              <td>UAE Net Zero 2050 Strategic Initiative & Environmental Registries Charter</td>
+              <td>Ministry of Climate Change and Environment, UAE</td>
+              <td><a href="https://www.moccae.gov.ae/" target="_blank">MOCCAE UAE Hub</a></td>
+            </tr>
+            <tr>
+              <td>[12]</td>
+              <td>ADGM FSRA Environmental Instrument Rules & Air Carbon Exchange Listing Standards</td>
+              <td>Abu Dhabi Global Market FSRA</td>
+              <td><a href="https://www.adgm.com/" target="_blank">ADGM Regulatory Portal</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- SECTION 6 -->
+      <section id="copyright">
+        <h2>6. Copyright, Proprietary Assets & Disclaimer</h2>
+        <div class="callout" style="border-color: var(--primary-color);">
+          <h5>Intellectual Property & Copyright Statement</h5>
+          <p><strong>Copyright &copy; 2026 Brahmastra Advisory Services. All Rights Reserved.</strong></p>
+          <p style="font-size: 0.8rem; color: var(--text-light); text-align: justify; margin-top: 8px;">The layout, visual system, canvas algorithms, keyword parsing database, and text explanations in the Universal Carbon Bridge Portal and this SOP/PRD document are the exclusive proprietary properties of Brahmastra Advisory Services (BAS). No part of this code or documentation may be reproduced, distributed, decompiled, or shared without prior written consent from Brahmastra Board of Directors.</p>
+        </div>
+        
+        <h3>6.2 Regulatory Disclaimer</h3>
+        <p style="font-size: 0.8rem; color: var(--text-light);">Calculations, timelines, and legal interpretations in this portal are configured for modeling and strategic planning purposes only. They do not constitute formal legal counsel. Obligated entities must consult with qualified Brahmastra compliance specialists to certify CBAM declarations or carbon offsets assets before final submissions.</p>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <p>&copy; 2026 Brahmastra Advisory Services. Registered Corporate Document: BAS-SOP-PRD-2026-004.</p>
+        <p style="font-size: 0.7rem; color: var(--text-light); margin-top: 6px;">Confidential Handout. Dissemination under NDA only.</p>
+      </footer>
+
+    </article>
+
+  </div>
+
+</body>
+</html>
